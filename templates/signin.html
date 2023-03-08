@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="signin-cards">
+  <div class="signin card">
+    <form class="signin-form" action="/signin" method="post">
+      <h2>Accesso</h2>
+      {% csrf_token %}
+      <div class="signin-container">
+        <label class="signin-label">Username</label>
+        <input id="username" name="username" type="text" placeholder="Inserisci il tuo nome utente" class="input"/>
+      </div>
+      <div class="signin-container">
+        <label class="signin-label">Password</label>
+        <input id="pass1" name="pass1" type="password" placeholder="Inserisci la tua password" class="input"/>
+      </div>
+      <button class="signin-button button" type="submit">Accedi</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

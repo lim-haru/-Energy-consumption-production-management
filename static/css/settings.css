@@ -1,0 +1,107 @@
+.settings-cards {
+  width: auto;
+  display: flex;
+  max-width: 1200px;
+  align-self: center;
+  margin-top: 80px;
+  align-items: center;
+  flex-direction: column;
+}
+.settings {
+  width: 702px;
+  height: auto;
+  align-self: stretch;
+  padding-top: 32px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 32px;
+}
+.settings-form {
+  width: 450px;
+  height: auto;
+  display: flex;
+  align-self: center;
+  margin-top: 30px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.settings-heading {
+  align-self: center;
+  font-style: normal;
+  font-weight: 800;
+}
+.settings-heading2 {
+  align-self: center;
+  margin-top: 45px;
+}
+.settings-container {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: relative;
+  align-self: flex-end;
+  margin-top: 25px;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.settings-label {
+  top: 9px;
+  left: 0px;
+  position: absolute;
+  align-self: center;
+  font-style: normal;
+  font-weight: 700;
+}
+.settings-button {
+  width: 188px;
+  margin-top: 30px;
+  text-align: center;
+}
+.settings-line {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 3px;
+  display: flex;
+  margin-top: 30px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  background-color: #353535;
+}
+.settings-heading3 {
+  align-self: center;
+}
+.settings-text {
+  margin-top: 12px;
+  font-weight: 550;
+}
+
+
+.settings-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.settings-table thead tr {
+  background-color: #444444;
+  color: #ffffff;
+  text-align: left;
+  border-bottom: 1px solid #666666;
+}
+.settings-table th,
+.settings-table td {
+  padding: 12px 15px;
+}
+.settings-table tbody tr {
+  border-bottom: 1px solid #666666;
+  background-color: #444444;
+  color: #ffffff;
+  font-size: 13px;
+}
+.settings-table tr.hover:hover {
+  background-color: #555555
+} 

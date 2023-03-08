@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if user.is_staff %}
+  <div class="home-cards">
+    <div class="home-consumed card">
+      <span class="home-title">Totale Consumato</span>
+      <span class="home-text">
+        {{ totConsumed }} Watt
+      </span>
+    </div>
+    <div class="home-produced card">
+      <span class="home-title">Totale Prodotto</span>
+      <span class="home-text">
+        {{ totProduced }} Watt
+      </span>
+    </div>
+  </div>
+  {% endif %}
+  <div class="home-cards2">
+    <div class="home-data card">
+      {% if user.is_authenticated %}
+        <form class="home-form" method="get">
+          {% csrf_token %}
+          <input type="text" id="search" name="search" placeholder="Cerca Transazione" class="home-input" />
+          <button class="home-search home-button" type="submit"></button>
+        </form>
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Ora</th>
+              <th>Energia Prodotta</th>
+              <th>Energia Consumata</th>
+              <th>Hash</th>
+              <th>Id Transazione</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in page_obj %}
+            <tr class="hover">
+              <td>{{ e.date|date:"d/m/Y" }}</td>
+              <td>{{ e.time|date:"H:i" }}</td>
+              <td>{{ e.produced_energy_in_watt }}</td>
+              <td>{{ e.consumed_energy_in_watt }}</td>
+              <td>{{ e.hash }}</td>
+              <td>{{ e.txId }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div class="home-pagination">
+          {% if page_obj.has_previous %}
+            <button class="home-page-previous home-button" onclick="window.location.href='?page={{ page_obj.previous_page_number }}'"></button>
+          {% else %}
+            <button class="home-page-previous home-button" disabled></button>
+          {% endif %}
+        
+          <button class="home-page home-button">{{ page_obj.number }}</button>
+
+          {% if page_obj.has_next %}
+            <button class="home-page-next home-button" onclick="window.location.href='?page={{ page_obj.next_page_number }}'"></button>
+          {% else %}
+            <button class="home-page-next home-button" disabled></button>
+          {% endif %}
+        </div>
+      {% else %}
+      <h3>Accedi per visualizzare la pagina</h3>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

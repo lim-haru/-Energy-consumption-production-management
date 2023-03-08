@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load cache %}
+{% block content %}
+    <div class="settings-cards">
+      <div class="settings card">
+        <form class="settings-form" action="/settings" method="post">
+          {% csrf_token %}
+          <h1 class="settings-heading">Impostazioni</h1>
+          <h2 class="settings-heading2">Modifica la tua Password</h2>
+          <div class="settings-container">
+            <label class="settings-label">Password attuale</label>
+            <input type="password" id="passOld" name="passOld" placeholder="Inserisci la password attuale" class="input" />
+          </div>
+        
+          <div class="settings-container">
+            <label class="settings-label">Nuova password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Inserisci la nuova password" class="input" />
+          </div>
+        
+          <div class="settings-container">
+            <label class="settings-label">Ripeti nuova password</label>
+            <input type="password" id="pass2" name="pass2" placeholder="Conferma la password" class="input" />
+          </div>
+        
+          <button class="settings-button button" type="submit">Salva le modifiche</button>
+        </form>
+        
+        {% if user.is_staff %}
+        <div class="settings-line"></div>
+        <h2 class="settings-heading3">Token API</h2>
+        <span class="settings-text">{{ token }}</span>
+        <div class="settings-line"></div>
+
+        <h2 class="settings-heading3">Cronologia delle sessioni</h2>
+        {% cache 600 "table-session" %}
+          <table class="settings-table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Indirizzo IP</th>
+                <th>Nazione</th>
+                <th>Attività recenti</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for session in sessions %}
+              <tr class="hover">
+                <td>{{ session.browser }}</td>
+                <td>{{ session.ip }}</td>
+                <td>{{ session.country }}</td>
+                <td>{{ session.date|date:"d/m/Y H:i" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endcache %}
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}

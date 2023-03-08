@@ -1,0 +1,45 @@
+.signin-cards {
+  display: flex;
+  max-width: 1200px;
+  align-self: center;
+  margin-top: 80px;
+  align-items: center;
+  flex-direction: column;
+}
+.signin {
+  height: auto;
+  padding-top: 32px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 32px;
+}
+.signin-form {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.signin-container {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-self: center;
+  margin-top: 25px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.signin-label {
+  align-self: flex-start;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.signin-button {
+  width: 125px;
+  margin-top: 40px;
+  text-align: center;
+}

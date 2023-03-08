@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Gestione Energia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" data-tag="font"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+  </head>
+  <body>
+    <section class="section">
+      <div class="menu">
+            <div class="desktop-navigation">
+              <nav class="bar-centered">
+                <div class="bar-left">
+                  <div class="bar-links">
+                    <span class="bar-title Link"><a href="/"><h1>Gestione Energia</h1></a></span>
+                  </div>
+                </div>
+                <div class="bar-right">
+                  {% if user.is_authenticated %}
+                  <h2 class="bar-user">{{ request.user }}</h2>
+                  <a href="{% url 'settings' %}" class="bar-ico1">
+                    {% include './icons/settings_black.svg' %}
+                  </a>
+                  <a href="{% url 'signout' %}" class="bar-ico2">
+                      {% include './icons/logout_black.svg' %}
+                  </a>
+                  {% else %}
+                  <a href="{% url 'signin' %}" class="bar-ico2">
+                      {% include './icons/login_black.svg' %}
+                  </a>
+                  {% endif %}
+                </div>
+              </nav>
+            </div>
+      </div>
+      {% block content %}
+      {% endblock %}
+    </section>
+
+    <div class="alert-cards">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} card" role="alert">
+        <strong class="alert-heading">Messaggio: {{ message }}</strong> 
+        <button class="alert-button" onclick="removeMessage(this)"></button>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <script>
+      function removeMessage(button) {
+        var messageDiv = button.parentNode;
+        messageDiv.parentNode.removeChild(messageDiv);
+      }
+  
+      // Rimuovi i messaggi dopo 15 secondi
+      setTimeout(function() {
+        var messageDivs = document.querySelectorAll('.alert');
+        for (var i = 0; i < messageDivs.length; i++) {
+          messageDivs[i].parentNode.removeChild(messageDivs[i]);
+        }
+      }, 15000);
+    </script>
+  </body>
+</html>

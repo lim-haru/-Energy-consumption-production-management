@@ -1,0 +1,10 @@
+Django==4.1.7
+django-redis==5.2.0
+django_debug_toolbar==3.8.1
+djangorestframework==3.14.0
+ipapi==1.0.4
+python-dotenv==1.0.0
+redis==4.5.1
+web3==5.31.3
+whitenoise==6.4.0
+user-agents==2.2.0
