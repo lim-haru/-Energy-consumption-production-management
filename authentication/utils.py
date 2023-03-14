@@ -8,14 +8,14 @@ import json
  
 def checkIp(request): 
     if User.is_staff:
-        response = requests.get("https://ipapi.co/json/")
+        ip = request.META['REMOTE_ADDR']
+        response = requests.get(f"https://ipapi.co/{ip}/json/")
         data = json.loads(response.text)
         if 'error' in data:
             country = 'Unknown'
         else:
             country = data["country_name"]
-
-        ip = request.META['REMOTE_ADDR']
+        
         user_agent = parse(request.META.get('HTTP_USER_AGENT'))
         browser = user_agent.browser.family
         

@@ -39,8 +39,8 @@
           <tbody>
             {% for e in page_obj %}
             <tr class="hover">
-              <td>{{ e.date|date:"d/m/Y" }}</td>
-              <td>{{ e.time|date:"H:i" }}</td>
+              <td>{{ e.datetime|date:"d/m/Y" }}</td>
+              <td>{{ e.datetime|date:"H:i" }}</td>
               <td>{{ e.produced_energy_in_watt }}</td>
               <td>{{ e.consumed_energy_in_watt }}</td>
               <td>{{ e.hash }}</td>

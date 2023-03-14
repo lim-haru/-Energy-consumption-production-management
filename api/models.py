@@ -3,17 +3,17 @@ from .utils import sendTransaction
 import hashlib
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import datetime
 
 class Energy(models.Model):
-    date = models.DateField(auto_now_add=True)
-    time = models.TimeField(auto_now_add=True)
+    datetime = models.DateTimeField(auto_now_add=True)
     produced_energy_in_watt = models.FloatField(verbose_name='Enegia Prodotta')
     consumed_energy_in_watt = models.FloatField(verbose_name='Enegia Consumata')
     hash = models.CharField(max_length=32, blank=True, default=None, null=True)
     txId = models.CharField(max_length=66, blank=True, default=None, null=True, verbose_name='Id Transazione')
 
     def __str__(self):
-        return self.date.strftime('%Y/%m/%d') + ' - ' + self.time.strftime('%H:%M')
+        return self.datetime.strftime('%Y/%m/%d - %H:%M') #return self.date.strftime('%Y/%m/%d %H:%M') + ' - ' + self.time.strftime('%H:%M')
 
     def writeOnChain(self, sender=None, instance=None, **kwargs):
         if not self.hash or not self.txId:

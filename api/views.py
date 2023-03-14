@@ -12,7 +12,7 @@ class EnergyDetail(APIView):
         if cache.get('energy'):
             obj = cache.get('energy')
         else:
-            obj = Energy.objects.all().order_by('-date')
+            obj = Energy.objects.all().order_by('-datetime')
             cache.set('energy', obj)
 
         serialzier = EnergySerializer(obj, many=True)
@@ -45,7 +45,7 @@ def home(request):
         totProduced = cache.get('totProduced')
         totConsumed = cache.get('totConsumed')
     else:
-        energy = Energy.objects.all().order_by('-date')
+        energy = Energy.objects.all().order_by('-datetime')
         cache.set('energy', energy, 60*15)
 
         totProduced = 0

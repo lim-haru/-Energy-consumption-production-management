@@ -9,21 +9,24 @@ from .models import SessionHistory
 from django.core.cache import cache
 
 def signin(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        pass1 = request.POST['pass1']
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    else:
+        if request.method == "POST":
+            username = request.POST['username']
+            pass1 = request.POST['pass1']
 
-        user = authenticate(username=username, password=pass1)
+            user = authenticate(username=username, password=pass1)
 
-        if user is not None:
-            login(request, user)
-            checkIp(request)
-            messages.success(request, f"Login effettuato con successo. Benvenuto {user}!")
-            cache.delete('table-session')
-            return redirect('home')
-        else:
-            messages.error(request, "Username o password non corretti")
-    return render(request, 'signin.html')
+            if user is not None:
+                login(request, user)
+                checkIp(request)
+                messages.success(request, f"Login effettuato con successo. Benvenuto {user}!")
+                cache.delete('template.cache."table-session".d41d8cd98f00b204e9800998ecf8427e')
+                return redirect('home')
+            else:
+                messages.error(request, "Username o password non corretti")
+        return render(request, 'signin.html')
 
 def signout(request):
     logout(request)
