@@ -10,36 +10,38 @@
     <link rel="stylesheet" href="{% static 'css/settings.css' %}">
   </head>
   <body>
-    <section class="section">
-      <div class="menu">
-            <div class="desktop-navigation">
-              <nav class="bar-centered">
-                <div class="bar-left">
-                  <div class="bar-links">
-                    <span class="bar-title Link"><a href="/"><h1>Gestione Energia</h1></a></span>
+    <div class="body-container">
+      <section class="section">
+        <div class="menu">
+              <div class="desktop-navigation">
+                <nav class="bar-centered">
+                  <div class="bar-left">
+                    <div class="bar-links">
+                      <span class="bar-title Link"><a href="/"><h1>Gestione Energia</h1></a></span>
+                    </div>
                   </div>
-                </div>
-                <div class="bar-right">
-                  {% if user.is_authenticated %}
-                  <h2 class="bar-user">{{ request.user }}</h2>
-                  <a href="{% url 'settings' %}" class="bar-ico1">
-                    {% include './icons/settings_black.svg' %}
-                  </a>
-                  <a href="{% url 'signout' %}" class="bar-ico2">
-                      {% include './icons/logout_black.svg' %}
-                  </a>
-                  {% else %}
-                  <a href="{% url 'signin' %}" class="bar-ico2">
-                      {% include './icons/login_black.svg' %}
-                  </a>
-                  {% endif %}
-                </div>
-              </nav>
-            </div>
-      </div>
-      {% block content %}
-      {% endblock %}
-    </section>
+                  <div class="bar-right">
+                    {% if user.is_authenticated %}
+                    <h2 class="bar-user">{{ request.user }}</h2>
+                    <a href="{% url 'settings' %}" class="bar-ico1">
+                      {% include './icons/settings_black.svg' %}
+                    </a>
+                    <a href="{% url 'signout' %}" class="bar-ico2">
+                        {% include './icons/logout_black.svg' %}
+                    </a>
+                    {% else %}
+                    <a href="{% url 'signin' %}" class="bar-ico2">
+                        {% include './icons/login_black.svg' %}
+                    </a>
+                    {% endif %}
+                  </div>
+                </nav>
+              </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+      </section>
+    </div>
 
     <div class="alert-cards">
       {% for message in messages %}

@@ -4,16 +4,19 @@ html {
 }
 body {
   margin: 0;
-  font-weight: 400;
-  font-style:normal;
-  text-decoration: none;
-  text-transform: none;
-  letter-spacing: normal;
-  line-height: 1.15;
-  color: #000000;
-  background-size: cover;
-  background-image: url('../icons/background.svg');
 }
+
+.body-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  background-image: url('../icons/background.svg');
+  background-size: cover;
+  min-height: 100vh;
+}
+
 a {
   color: inherit;
   text-decoration: inherit;
@@ -52,6 +55,7 @@ h4 {
 
 body::-webkit-scrollbar {
   width: 0.5em;
+  height: 0.5em;
   z-index: 100;
   background-color:transparent;
 }
@@ -86,9 +90,10 @@ body::-webkit-scrollbar-thumb {
 
 
 .bar-centered {
-  width: 100%;
+  width: 48%;
   display: flex;
-  max-width: 1200px;
+  /* max-width: 48%; */
+  min-width: 600px;
   box-sizing: initial;
   align-items: center;
   padding-left: 24px;
