@@ -9,9 +9,7 @@ from .models import SessionHistory
 from django.core.cache import cache
 
 def signin(request):
-    if request.user.is_authenticated:
-        return render(request, 'home.html')
-    else:
+    if not request.user.is_authenticated:
         if request.method == "POST":
             username = request.POST['username']
             pass1 = request.POST['pass1']
@@ -27,6 +25,8 @@ def signin(request):
             else:
                 messages.error(request, "Username o password non corretti")
         return render(request, 'signin.html')
+    else:
+        return redirect('home')
 
 def signout(request):
     logout(request)
@@ -69,6 +69,6 @@ def settings(request):
         token, created = Token.objects.get_or_create(user=request.user)
         return render(request, 'settings.html', {'token': token.key, 'sessions': sessions})
     else:
-        return render(request, 'home.html')
+        return redirect('home')
 
 

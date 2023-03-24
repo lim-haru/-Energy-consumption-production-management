@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.contrib import messages
 from user_agents import parse
 from django.utils import timezone
@@ -7,7 +6,7 @@ import requests
 import json
  
 def checkIp(request): 
-    if User.is_staff:
+    if request.user.is_staff:
         ip = request.META['REMOTE_ADDR']
         response = requests.get(f"https://ipapi.co/{ip}/json/")
         data = json.loads(response.text)
@@ -47,4 +46,4 @@ def checkIp(request):
                     country=country
                 )
             info.save()
-    return sessions
+        return sessions

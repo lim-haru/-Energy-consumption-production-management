@@ -4,7 +4,7 @@
 ## Funzionamento  
 - ### [Presentazione](https://www.canva.com/design/DAFcgYpGPMc/_TVnbJkLH1QTAWHzijD92w/view?utm_content=DAFcgYpGPMc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 - Nella home è presente una tabella con l'energia prodotta e consumata, Hash dei dati e Id della transazione, con la possibilità di filtrare le transazioni 
-- I dati sull'energia prodotta e consumata vengo inviati tramite API con l'autenticazione di un **Token**
+- I dati sull'energia prodotta e consumata vengo inviati tramite API con l'autenticazione di un **Token** in formato JSON
 - **Utente** è in grado di vedere nella home solo la tabella, nelle impostazioni di cambiare password
 - **Amministratore** è in grado in più di vedere nella home il totale prodotto e consumato, nelle impostazioni il token di autorizzazione e la cronologia delle sessioni
 - I dati di tutte le tabelle e i totali dell'energia calcolati vengono salvati nella cache di **Redis** in modo temporaneo
