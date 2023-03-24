@@ -6,15 +6,13 @@ from rest_framework import status
 from .serailizer import EnergySerializer
 from django.core.paginator import Paginator
 from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 class EnergyDetail(APIView):
+    @method_decorator(cache_page(60*20))
     def get(self, request):
-        if cache.get('energy'):
-            obj = cache.get('energy')
-        else:
-            obj = Energy.objects.all().order_by('-datetime')
-            cache.set('energy', obj)
-
+        obj = Energy.objects.all().order_by('-datetime')
         serialzier = EnergySerializer(obj, many=True)
         return Response(serialzier.data, status=status.HTTP_200_OK)
     
@@ -22,9 +20,7 @@ class EnergyDetail(APIView):
         serializer = EnergySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            cache.delete('energy')
-            cache.delete('totProduced')
-            cache.delete('totConsumed')
+            cache.clear()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
